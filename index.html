@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>AI Digest — Week ending May 17, 2026</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="AI Digest" />
+<meta name="theme-color" content="#f8f7f4" />
+<link rel="manifest" href="/ai-digest/manifest.json" />
+<link rel="apple-touch-icon" href="/ai-digest/icon-180.png" />
+<link rel="icon" type="image/svg+xml" href="/ai-digest/icon.svg" />
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f8f7f4;
+  --surface: #ffffff;
+  --border: #e5e3dd;
+  --text: #1a1a1a;
+  --text-muted: #5f5f5f;
+  --accent: #b04a2f;
+  --accent-soft: #faece6;
+  --link: #1d4f8a;
+  --shadow: 0 1px 2px rgba(0,0,0,0.04), 0 0 0 1px rgba(0,0,0,0.03);
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: max(12px, env(safe-area-inset-top));
+}
+.site-header .brand {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+.site-header .brand .dot { color: var(--accent); }
+.site-header nav a {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-left: 16px;
+}
+.site-header nav a:hover { color: var(--accent); }
+.wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 20px 20px 80px;
+}
+header.top {
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+header.top h1 {
+  font-size: 24px;
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+header.top .meta {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+header.top .lede {
+  margin-top: 14px;
+  font-size: 15px;
+  color: #2a2a2a;
+}
+section.block {
+  margin-bottom: 36px;
+}
+section.block h2.section-title {
+  font-size: 18px;
+  margin: 0 0 4px;
+  letter-spacing: -0.01em;
+  scroll-margin-top: 60px;
+}
+section.block p.section-blurb {
+  color: var(--text-muted);
+  margin: 0 0 16px;
+  font-size: 14px;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow);
+}
+.card h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  letter-spacing: -0.005em;
+  line-height: 1.3;
+}
+.card .date-line {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.card .date-line .pill {
+  display: inline-block;
+  background: var(--accent-soft);
+  color: var(--accent);
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 600;
+  margin-right: 8px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.card p {
+  margin: 0 0 8px;
+  color: #222;
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+.card .src {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+.card .src a + a::before { content: " · "; color: var(--border); }
+.themes p { font-size: 15px; margin: 0 0 14px; color: #222; line-height: 1.6; }
+.watch ol { margin: 0; padding-left: 22px; }
+.watch li { margin-bottom: 10px; font-size: 14.5px; }
+nav.in-page-toc {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+nav.in-page-toc h2 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin: 0 0 10px;
+}
+nav.in-page-toc ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: section;
+}
+nav.in-page-toc li {
+  counter-increment: section;
+  margin: 4px 0;
+}
+nav.in-page-toc li::before {
+  content: counter(section) ".";
+  color: var(--text-muted);
+  margin-right: 6px;
+}
+nav.in-page-toc a { color: var(--text); }
+footer.foot {
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 12px;
+  text-align: center;
+}
+@media (min-width: 880px) {
+  .wrap { max-width: 880px; }
+  header.top h1 { font-size: 28px; }
+}
+</style>
+</head>
+<body>
+<div class="site-header">
+  <a class="brand" href="/ai-digest/"><span class="dot">●</span> AI Digest</a>
+  <nav>
+    <a href="/ai-digest/archive/">Archive</a>
+  </nav>
+</div>
+<div class="wrap">
+  <header class="top">
+    <h1>Weekly AI Developments</h1>
+    <div class="meta">Coverage window: May 10 to May 17, 2026 (UTC) · Published Sunday, May 17, 2026</div>
+    <p class="lede">A quiet week on the model-release front hid three of the biggest structural stories of 2026 so far: Anthropic is reportedly raising at a $900B+ valuation, OpenAI both spun out a $4B consulting subsidiary and consolidated ChatGPT/Codex/API under Greg Brockman three days before Google I/O, and Treasury Secretary Bessent confirmed the first formal US–China AI safety negotiation track. None of these are product launches. All three reshape the competitive structure of the field.</p>
+  </header>
+
+  <nav class="in-page-toc" aria-label="Table of contents">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#sec-models">Frontier models &amp; benchmarks</a></li>
+      <li><a href="#sec-research">Research &amp; technical</a></li>
+      <li><a href="#sec-business">Business, funding &amp; M&amp;A</a></li>
+      <li><a href="#sec-policy">Policy, regulation &amp; safety</a></li>
+      <li><a href="#sec-themes">Themes</a></li>
+      <li><a href="#sec-watch">Watchlist</a></li>
+      <li><a href="#sec-sources">Sources</a></li>
+    </ol>
+  </nav>
+
+  <section class="block" id="sec-models">
+    <h2 class="section-title">1 · Frontier model releases &amp; benchmarks</h2>
+    <p class="section-blurb">Light week for flagship launches. Action was in variants, distribution, and pre-I/O leaks.</p>
+
+    <div class="card">
+      <h3>OpenAI extends GPT-5.5-Cyber to EU institutions</h3>
+      <div class="date-line"><span class="pill">May 11</span>OpenAI · EU Cyber Action Plan</div>
+      <p>Cybersecurity-specialized GPT-5.5 variant given to EU businesses, governments, national CSIRTs, and the EU AI Office. UK AISI scoring still puts Claude Mythos slightly ahead on a 32-step simulated corporate attack (3/10 vs. 2/10). Anthropic explicitly declined the same level of access — discussions are at "a different stage."</p>
+      <div class="src"><a href="https://www.cnbc.com/2026/05/11/openai-eu-cyber-model-anthropic-mythos-gpt.html">CNBC</a></div>
+    </div>
+
+    <div class="card">
+      <h3>Project Genie 3 opened to U.S. AI Ultra subscribers</h3>
+      <div class="date-line"><span class="pill">May 11</span>Google DeepMind</div>
+      <p>11B-parameter autoregressive world model now in consumer hands — real-time 720p worlds at 24 fps, multi-minute coherence. "Promptable events" from the original August 2025 paper not yet shipped. First broad consumer deployment of an interactive world model.</p>
+      <div class="src"><a href="https://blog.google/innovation-and-ai/models-and-research/google-deepmind/project-genie/">Google</a> <a href="https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models/">DeepMind blog</a></div>
+    </div>
+
+    <div class="card">
+      <h3>Thinking Machines Lab previews TML-Interaction-Small</h3>
+      <div class="date-line"><span class="pill">May 12</span>Thinking Machines · Mira Murati</div>
+      <p>276B-parameter MoE (12B active) trained natively to listen, speak, see, and interrupt in a single network. Claimed turn-around latency 0.40s. Research preview only, no standard benchmarks. The architectural pitch — interleaved A/V/text tokens with explicit "interrupt" training — matters more than the latency.</p>
+      <div class="src"><a href="https://techcrunch.com/2026/05/11/thinking-machines-wants-to-build-an-ai-that-actually-listens-while-it-talks/">TechCrunch</a> <a href="https://www.marktechpost.com/2026/05/13/mira-muratis-thinking-machines-lab-introduces-interaction-models-a-native-multimodal-architecture-for-real-time-human-ai-collaboration/">MarkTechPost</a></div>
+    </div>
+
+    <div class="card">
+      <h3>Google's I/O Gemini leak — "GPT-5.5-class"</h3>
+      <div class="date-line"><span class="pill">May 14</span>Sources by Alex Heath · Single-source</div>
+      <p>Alex Heath reports the I/O 2026 Gemini will land "roughly in the class of GPT-5.5" and "well short of Anthropic's Mythos." Flagged as single-source until I/O on May 19. If accurate, Google is conceding the frontier and competing on integration.</p>
+      <div class="src"><a href="https://sources.news/p/google-about-to-release-new-gemini">Sources</a></div>
+    </div>
+
+    <div class="card">
+      <h3>Context: xAI Grok 4.3 (released May 6, just outside window)</h3>
+      <div class="date-line"><span class="pill">Context</span>xAI</div>
+      <p>53 on Artificial Analysis Intelligence Index — behind GPT-5.5 (60), Claude Opus 4.7 (57), Gemini 3.1 Pro (57). Tops the AA agentic-tool-calling and instruction-following sub-leaderboards. Pricing: $1.25 / $2.50 per M tokens. The aggressive pricing posture is the news.</p>
+      <div class="src"><a href="https://artificialanalysis.ai/models/grok-4-3">Artificial Analysis</a></div>
+    </div>
+  </section>
+
+  <section class="block" id="sec-research">
+    <h2 class="section-title">2 · Research papers &amp; technical breakthroughs</h2>
+    <p class="section-blurb">Long-context efficiency, agentic vuln discovery, alignment agenda shifts, and open-source agents taking real share.</p>
+
+    <div class="card">
+      <h3>Lighthouse Attention — 17× speedup at 512K context on B200</h3>
+      <div class="date-line"><span class="pill">arXiv May 7 · Coverage May 16</span>Nous Research</div>
+      <p>Bowen Peng, Subho Ghosh, Jeffrey Quesnelle. Training-only hierarchical attention that wraps SDPA, removable near end of training. 1.40–1.69× end-to-end wall-clock pretraining speedup at 98K context; 21× faster forward, 17.3× forward+backward at 512K on a single B200. Gradient-free, two-stage compression → FlashAttention. Long-context pretraining cost has been the gating constraint on continued context-window scaling.</p>
+      <div class="src"><a href="https://arxiv.org/abs/2605.06554">arXiv</a> <a href="https://www.marktechpost.com/2026/05/16/nous-research-proposes-lighthouse-attention-a-training-only-selection-based-hierarchical-attention-that-delivers-1-4-1-7x-pretraining-speedup-at-long-context/">MarkTechPost</a></div>
+    </div>
+
+    <div class="card">
+      <h3>Microsoft MDASH — multi-model agentic vuln discovery</h3>
+      <div class="date-line"><span class="pill">May 12</span>Microsoft Autonomous Code Security</div>
+      <p>&gt;100 specialized AI agents across frontier + distilled models orchestrated to discover and prove exploitable bugs end-to-end. 16 new CVEs in Windows TCP/IP, IKEEXT, HTTP.sys, Netlogon, DNS, Telnet — including 4 Critical RCEs. 96% recall on five years of MSRC vulns in clfs.sys, 100% on tcpip.sys, and 88.45% on CyberGym — claimed SOTA.</p>
+      <div class="src"><a href="https://www.microsoft.com/en-us/security/blog/2026/05/12/defense-at-ai-speed-microsofts-new-multi-model-agentic-security-system-finds-16-new-vulnerabilities/">Microsoft Security Blog</a> <a href="https://www.helpnetsecurity.com/2026/05/13/microsoft-mdash-agentic-ai-security-system/">Help Net Security</a></div>
+    </div>
+
+    <div class="card">
+      <h3>Apollo Research — "Science of Scheming" agenda shift</h3>
+      <div class="date-line"><span class="pill">May (mid-month)</span>Apollo Research</div>
+      <p>Scheming evals demoted to secondary priority; primary focus is now understanding structural drivers (situational awareness, long-horizon RL) on future systems. Apollo's leadership explicitly states current evals "cannot tell us what the next generation of models will do." DC office opens June 2026.</p>
+      <div class="src"><a href="https://www.apolloresearch.ai/blog/apollo-update-may-2026/">Apollo Research</a> <a href="https://www.lesswrong.com/posts/4acQRDNyPs7tD8EED/apollo-update-may-2026">LessWrong</a></div>
+    </div>
+
+    <div class="card">
+      <h3>Hermes Agent overtakes OpenClaw on OpenRouter</h3>
+      <div class="date-line"><span class="pill">May 10–15</span>Nous Research</div>
+      <p>Open-source, MIT-licensed, persistent-memory, multi-protocol agent processed 224B tokens in one day on OpenRouter, vs. OpenClaw's 186B. On May 15, xAI added first-class Grok integration. Open agents are now taking real volume share from hosted incumbents.</p>
+      <div class="src"><a href="https://www.techtimes.com/articles/316694/20260515/nous-researchs-hermes-agent-dethrones-openclaw-worlds-most-used-open-source-ai-agent.htm">TechTimes</a> <a href="https://x.ai/news/grok-hermes">xAI</a></div>
+    </div>
+  </section>
+
+  <section class="block" id="sec-business">
+    <h2 class="section-title">3 · Business, funding &amp; M&amp;A</h2>
+    <p class="section-blurb">The week's center of gravity. Capital structure, distribution, and pricing dominated.</p>
+
+    <div class="card">
+      <h3>Anthropic in talks: $30B raise at $900B+ valuation</h3>
+      <div class="date-line"><span class="pill">May 12</span>Anthropic · Bloomberg scoop</div>
+      <p>Would nearly triple February's $380B post-money and overtake OpenAI's $852B March mark. Target close end of month per Bloomberg sources, no term sheet yet. Context: Dario Amodei said Anthropic posted 80× YoY annualized revenue/usage growth in Q1. October IPO is reportedly on the table.</p>
+      <div class="src"><a href="https://www.bloomberg.com/news/articles/2026-05-12/anthropic-in-talks-to-raise-30-billion-at-900-billion-valuation">Bloomberg</a></div>
+    </div>
+
+    <div class="card">
+      <h3>OpenAI launches a $4B Deployment Company</h3>
+      <div class="date-line"><span class="pill">May 11</span>OpenAI · TPG, Advent, Bain, Brookfield</div>
+      <p>Majority-OpenAI subsidiary; $14B standalone valuation per Axios. Forward-deployed engineers embedded inside enterprise customers. Initial staffing from acquisition of Tomoro (~150 engineers; clients include Mattel, Red Bull, Tesco, Virgin Atlantic). 19 firms total. BBVA is first announced customer. OpenAI now competes with Accenture/Deloitte/PwC, not just other model labs.</p>
+      <div class="src"><a href="https://openai.com/index/openai-launches-the-deployment-company/">OpenAI</a> <a href="https://www.axios.com/2026/05/11/openai-deployco-private-equity">Axios</a></div>
+    </div>
+
+    <div class="card">
+      <h3>Greg Brockman consolidates OpenAI product under one org</h3>
+      <div class="date-line"><span class="pill">May 16</span>OpenAI</div>
+      <p>ChatGPT, Codex, developer API merged into one organization, three days before Google I/O. Codex expands first into productivity beyond coding; ChatGPT + Atlas browser fold in subsequently. Sottiaux takes core product/platform; Turley moves to enterprise. Framed as IPO-readying.</p>
+      <div class="src"><a href="https://techcrunch.com/2026/05/16/openai-co-founder-greg-brockman-reportedly-takes-charge-of-product-strategy/">TechCrunch</a> <a href="https://www.theinformation.com/briefings/openai-reorganizes-product-teams-around-unified-app-strategy">The Information</a></div>
+    </div>
+
+    <div class="card">
+      <h3>Anthropic adds separate credit meter for third-party agent tools</h3>
+      <div class="date-line"><span class="pill">May 14</span>Anthropic</div>
+      <p>Paid Claude users get back external agent harness support (e.g., OpenClaw), but on a separate monthly credit pool. Internal framing: agentic workloads break all-you-can-eat unit economics. External read: OpenAI Codex pricing now looks competitive for heavy agent users.</p>
+      <div class="src"><a href="https://www.axios.com/2026/05/14/anthropic-claude-price-openai-tokens">Axios</a></div>
+    </div>
+
+    <div class="card">
+      <h3>Anthropic × Gates Foundation: $200M / 4 years</h3>
+      <div class="date-line"><span class="pill">May 14</span>Anthropic · Gates Foundation</div>
+      <p>Grants, Claude credits, and technical support for global health, US K-12 tutoring, foundational literacy in sub-Saharan Africa and India, and ag productivity for smallholder farmers. Commits to public-good open datasets and benchmarks — unusual for a frontier lab.</p>
+      <div class="src"><a href="https://www.anthropic.com/news/gates-foundation-partnership">Anthropic</a> <a href="https://www.gatesfoundation.org/ideas/media-center/press-releases/2026/05/ai-anthropic-partnership">Gates Foundation</a></div>
+    </div>
+
+    <div class="card">
+      <h3>Recursive Superintelligence exits stealth — $650M at $4.65B</h3>
+      <div class="date-line"><span class="pill">May 13–14</span>Recursive Superintelligence</div>
+      <p>Founders: Richard Socher, Tim Rocktäschel, Jeff Clune, Josh Tobin, Tim Shi. GV + Greycroft lead; AMD Ventures, NVIDIA participate. Four months old, &lt;30 employees, no product. First milestone: a system "with the capabilities of 50,000 doctors" automating AI research; public launch targeted mid-2026.</p>
+      <div class="src"><a href="https://techcrunch.com/2026/05/14/what-happens-when-ai-starts-building-itself/">TechCrunch</a> <a href="https://www.unite.ai/recursive-superintelligence-raises-650-million-to-pursue-self-improving-ai/">Unite.AI</a></div>
+    </div>
+
+    <div class="card">
+      <h3>Context: Anthropic–Akamai $1.8B / 7-year compute deal (May 8)</h3>
+      <div class="date-line"><span class="pill">Context (May 8)</span>Anthropic · Akamai</div>
+      <p>AKAM +27% on the day, largest single-day rally in the company's 28-year history. Anthropic is now contracting compute across AWS, Google Cloud, and a CDN provider. Single best read on compute supply constraints this month.</p>
+      <div class="src"><a href="https://www.bloomberg.com/news/articles/2026-05-08/anthropic-inks-1-8-billion-computing-deal-with-akamai">Bloomberg</a> <a href="https://www.cnbc.com/2026/05/08/akamai-stock-ai-cloud-infrastructure-deal.html">CNBC</a></div>
+    </div>
+  </section>
+
+  <section class="block" id="sec-policy">
+    <h2 class="section-title">4 · Policy, regulation &amp; safety</h2>
+    <p class="section-blurb">First formal US–China AI safety track. Local pushback on data centers. arXiv's slop policy.</p>
+
+    <div class="card">
+      <h3>US and China to open formal AI safety talks</h3>
+      <div class="date-line"><span class="pill">May 14</span>Treasury · Bessent on CNBC</div>
+      <p>Following Trump–Xi in Beijing, Bessent confirmed bilateral AI safety negotiations on the explicit framing: "We are able to have wholesome discussions with the Chinese on AI because we are in the lead." Narrow scope: preventing frontier weights/capabilities from flowing to non-state actors.</p>
+      <div class="src"><a href="https://www.cnbc.com/2026/05/14/us-china-ai-rules-bessent-us-lead.html">CNBC</a></div>
+    </div>
+
+    <div class="card">
+      <h3>Hill County, TX: 1-year data-center construction moratorium</h3>
+      <div class="date-line"><span class="pill">May 12</span>Hill County, TX</div>
+      <p>First Texas county to do so. Commissioners court 3–2 vote, unincorporated areas only. Cited concerns: water, fire, road wear, noise, light, public health. Trigger was a Provident Data Centers project near Hillsboro. Texas trails only Virginia in operating data centers.</p>
+      <div class="src"><a href="https://www.texastribune.org/2026/05/12/texas-hill-county-approves-data-center-construction-pause-ai/">Texas Tribune</a> <a href="https://www.bloomberg.com/news/articles/2026-05-13/dallas-exurb-hits-pause-on-data-centers-in-a-rare-texas-rebuke">Bloomberg</a></div>
+    </div>
+
+    <div class="card">
+      <h3>arXiv: 1-year ban for "incontrovertible" AI-slop submissions</h3>
+      <div class="date-line"><span class="pill">May 14–15</span>arXiv · Thomas Dietterich</div>
+      <p>Hallucinated references, surviving LLM meta-comments, placeholder data → one-year ban + peer-review-only re-entry. One-strike rule, appealable. AI assistance itself isn't banned; not reading what the AI wrote is.</p>
+      <div class="src"><a href="https://www.404media.co/new-arxiv-rules-ai-generated-papers-ban/">404 Media</a> <a href="https://techcrunch.com/2026/05/16/research-repository-arxiv-will-ban-authors-for-a-year-if-they-let-ai-do-all-the-work/">TechCrunch</a></div>
+    </div>
+
+    <div class="card">
+      <h3>CAISI signs pre-deployment evaluation pacts with DeepMind, Microsoft, xAI</h3>
+      <div class="date-line"><span class="pill">Early May, ongoing</span>NIST / CAISI</div>
+      <p>Adds three labs to existing Anthropic + OpenAI agreements. CAISI now has 40 completed evaluations on US frontier models, some pre-release. WH separately studying an FDA-style AI executive order. AFPI publicly called CAISI "chronically underfunded" — ~30 staff, ~$30M total since 2024.</p>
+      <div class="src"><a href="https://www.cnbc.com/2026/05/05/ai-oversight-trump-google-microsoft-xai.html">CNBC</a> <a href="https://federalnewsnetwork.com/artificial-intelligence/2026/05/wh-studying-ai-security-executive-order/">FNN</a></div>
+    </div>
+  </section>
+
+  <section class="block themes" id="sec-themes">
+    <h2 class="section-title">5 · Themes &amp; connective tissue</h2>
+    <p><strong>The action has moved from model launches to capital structure and distribution.</strong> Nobody launched a flagship general model this week. Anthropic talked to investors about $900B, OpenAI stood up a $4B consulting subsidiary and consolidated product under its co-founder, and Anthropic restructured agent pricing. The labs no longer believe raw model capability is the durable moat. The moat is being inside enterprise customers, controlling the developer-API and consumer-app pricing surface, and locking down compute supply.</p>
+    <p><strong>Offensive cyber is now an explicitly named frontier-model capability.</strong> Anthropic identified thousands of zero-days using Mythos. Microsoft's MDASH dropped 16 fresh CVEs (4 Critical RCEs) on its own Windows networking stack and posted 88.45% on CyberGym. OpenAI gave EU regulators API access to a similar capability class. The salient AI safety story is no longer hallucinations and copyright — it's offensive cyber and weights non-proliferation.</p>
+    <p><strong>The infrastructure layer is fraying at multiple seams.</strong> Anthropic signed a seven-year, $1.8B compute deal with a CDN provider because hyperscalers can't absorb its growth. A pro-business Texas county put a 1-year ban on data centers. Goldman projects a 45 GW US data-center power shortfall by 2028. Anthropic's new credit meter on third-party agent usage is a real admission that consumer-tier unit economics are now compute-constrained.</p>
+    <p>If I had to short something on this week's news, it would be the assumption that lab capability rankings will matter more than relative compute-supply, distribution, and regulatory-access positions over the next 12 months.</p>
+  </section>
+
+  <section class="block watch" id="sec-watch">
+    <h2 class="section-title">6 · Watchlist for next week (May 18–24)</h2>
+    <ol>
+      <li><strong>Google I/O, Tuesday May 19, 10 AM PT.</strong> A new Gemini is confirmed. Watch: Android XR / Project Genie integration, the rumored "Omni" video generator, and whether Google ships an agentic Gemini.</li>
+      <li><strong>NVIDIA Q1 FY27 earnings, after-market Wednesday May 20.</strong> Consensus ~77% YoY revenue growth. Watch the Blackwell ramp, Rubin demand commentary, and data-center segment guide.</li>
+      <li><strong>Anthropic $30B / $900B close.</strong> Bloomberg said "as soon as end of this month." If it lands, Anthropic becomes the highest-valued private AI company for the first time.</li>
+      <li><strong>Trump AI security EO.</strong> Hassett floated an FDA-style pre-release evaluation regime on the record. Watch for a draft order.</li>
+      <li><strong>OpenAI Deployment Company customer wins.</strong> BBVA is first. The next 3–5 announcements will tell you whether OpenAI seriously competes with Accenture.</li>
+    </ol>
+  </section>
+
+  <section class="block" id="sec-sources">
+    <h2 class="section-title">7 · Sources</h2>
+    <p class="section-blurb">See the full source list inside the markdown report. Top sources by section appear in each card above.</p>
+  </section>
+
+  <footer class="foot">
+    Generated <span id="gen-date">May 17, 2026</span> · Published automatically every Sunday.<br />
+    <a href="/ai-digest/archive/">Browse past weeks →</a>
+  </footer>
+</div>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/ai-digest/sw.js').catch(() => {});
+}
+</script>
+</body>
+</html>
